@@ -35,13 +35,25 @@ const Shop = () => {
         setCart(savedCart)
     }, [products])
 
-    const handleAddToCart = (product) => {
+
+    const handleAddToCart = (selectedProduct) => {
         // New product push in Cart array 
-        const newCart = [...cart, product];
+
+        const existProduct = cart.find(product => product.id === selectedProduct.id);
+        let newCart = []
+        if (!existProduct) {
+            selectedProduct.quantity = 1;
+            newCart = [...cart, selectedProduct];
+        }
+        else {
+            const rest = cart.filter(product => product.id !== selectedProduct.id);
+            existProduct.quantity = existProduct.quantity + 1;
+            newCart = [...rest, existProduct]
+        }
         setCart(newCart);
 
         // Call Local storage Database 
-        addToDb(product.id);
+        addToDb(selectedProduct.id);
     }
 
 
