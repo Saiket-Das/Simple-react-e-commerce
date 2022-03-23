@@ -1,0 +1,9 @@
+.cart{
+    margin-top: 28px;
+    position: sticky;
+    top: 0;
+}
+
+.cart hr{
+    border-top: 2px dashed black;
+  }

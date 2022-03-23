@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb, getStoreCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -17,11 +18,30 @@ const Shop = () => {
     // Cart Button Handler 
     const [cart, setCart] = useState([])
 
+    useEffect(() => {
+        const storedCart = getStoreCart()
+
+        const savedCart = []
+        // Get the Object property(ID) from local LOCAL Storage Object 
+        for (const id in storedCart) {
+            const addedProduct = products.find(product => product.id === id);
+
+            if (addedProduct) {
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity;
+                savedCart.push(addedProduct)
+            }
+        }
+        setCart(savedCart)
+    }, [products])
+
     const handleAddToCart = (product) => {
         // New product push in Cart array 
-        const newCart = [...cart, product]
-        console.log(newCart);
-        setCart(newCart)
+        const newCart = [...cart, product];
+        setCart(newCart);
+
+        // Call Local storage Database 
+        addToDb(product.id);
     }
 
 
