@@ -1,40 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { addToDb, getStoreCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
+import useCart from '../Hook/useCart';
+import useProducts from '../Hook/useProduct';
 import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () => {
 
     // Products data load 
-    const [products, setProducts] = useState([])
-    useEffect(() => {
-        fetch('products.json')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+    const [products, setProducts] = useProducts();
+    const [cart, setCart] = useCart(products)
 
+
+    /*---------- // Use that in another component // ----------
+
+    // useEffect(() => {
+    //     fetch('products.json')
+    //         .then(res => res.json())
+    //         .then(data => setProducts(data))
+    // }, [])
 
     // Cart Button Handler 
-    const [cart, setCart] = useState([])
+    // const [cart, setCart] = useState([])
 
-    useEffect(() => {
-        const storedCart = getStoreCart()
+    // useEffect(() => {
+    //     const storedCart = getStoreCart()
 
-        const savedCart = []
-        // Get the Object property(ID) from local LOCAL Storage Object 
-        for (const id in storedCart) {
-            const addedProduct = products.find(product => product.id === id);
+    //     const savedCart = []
+    //     // Get the Object property(ID) from local LOCAL Storage Object 
+    //     for (const id in storedCart) {
+    //         const addedProduct = products.find(product => product.id === id);
 
-            if (addedProduct) {
-                const quantity = storedCart[id];
-                addedProduct.quantity = quantity;
-                savedCart.push(addedProduct)
-            }
-        }
-        setCart(savedCart)
-    }, [products])
-
+    //         if (addedProduct) {
+    //             const quantity = storedCart[id];
+    //             addedProduct.quantity = quantity;
+    //             savedCart.push(addedProduct)
+    //         }
+    //     }
+    //     setCart(savedCart)
+    // }, [products])
+    
+    
+    --------- // Use that in another component // --------- */
 
     const handleAddToCart = (selectedProduct) => {
         // New product push in Cart array 
@@ -55,6 +63,8 @@ const Shop = () => {
         // Call Local storage Database 
         addToDb(selectedProduct.id);
     }
+
+
 
 
     return (
