@@ -34,6 +34,7 @@ const Cart = (props) => {
                 <p> Shipping charge: ${shippingCharge}</p>
                 <p> Tax: ${tax}</p>
                 <h3>Grand Total: ${parseFloat(grandTotalAmount).toFixed(2)}</h3>
+                {props.children}
             </div>
 
         </div>

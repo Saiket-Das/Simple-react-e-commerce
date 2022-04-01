@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { addToDb, getStoreCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import useCart from '../Hook/useCart';
@@ -40,9 +41,9 @@ const Shop = () => {
     //     }
     //     setCart(savedCart)
     // }, [products])
-    
-    
+
     --------- // Use that in another component // --------- */
+
 
     const handleAddToCart = (selectedProduct) => {
         // New product push in Cart array 
@@ -80,9 +81,13 @@ const Shop = () => {
 
             {/* Cart Container --- Cart.js*/}
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
-            </div>
-        </div>
+                <Cart cart={cart}>
+                    <Link to={'/order'}>
+                        < button className='review-btn'> Review Order</button>
+                    </Link>
+                </Cart>
+            </div >
+        </div >
     );
 };
 
