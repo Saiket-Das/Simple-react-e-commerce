@@ -1,33 +1,73 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 import googleImg from '../../images/google.png'
+import auth from '../../firebase.init';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 const Login = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    // const [error, setError] = useState('');
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        erroMsg
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const navigate = useNavigate()
+
+
+    const handleEmailBlur = event => {
+        setEmail(event.target.value);
+    }
+    const handlePasswordBlur = event => {
+        setPassword(event.target.value);
+    }
+
+    if (user) {
+        navigate('/');
+    }
+
+    const handleUserSignIn = event => {
+        event.preventDefault()
+        signInWithEmailAndPassword(email, password)
+    }
+
     return (
         <div className='form-container'>
             <div>
                 <h2 className='form-title'>LOGIN</h2>
 
                 {/* INPUT FIELD  */}
-                <form action="">
+                <form action="" onSubmit={handleUserSignIn}>
 
                     {/* EMAIL FIELD  */}
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="" id="" />
+                        <input onBlur={handleEmailBlur} type="email" name="" id="" />
                     </div>
 
                     {/* PASSWORD FIELD  */}
                     <div className="input-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="" />
+                        <label htmlFor="password" >Password</label>
+                        <input onBlur={handlePasswordBlur} type="password" name="password" id="" required />
                     </div>
+
+
+                    <p className='error-msg'>{erroMsg?.message.slice(22, -2)}</p>
+                    {
+                        loading && <p className='loading-msg'>Loading...</p>
+                    }
+
 
                     <br />
                     {/* SUBMIT FIELD  */}
                     <div className="input-group ">
-                        <input className='form-submit' type="submit" value="LOGIN" />
+                        <input className='form-submit' type="submit" value="LOGIN" required />
                     </div>
                 </form>
 

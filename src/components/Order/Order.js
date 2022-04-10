@@ -44,7 +44,7 @@ const Order = () => {
             <div className="cart-container">
 
                 <Cart cart={cart}>
-                    <Link to={'/review'}>
+                    <Link to={'/inventory'}>
                         < button className='review-btn'> Procced Checkout</button>
                     </Link>
                 </Cart>
