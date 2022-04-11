@@ -17,9 +17,11 @@
 
  9 - If user is created redirect to the expected page.
 
- 10 -
+ 10 - Create RequirAuth component = Check user exist and Trace user location.
 
- 11 -
+ 11 - In route wrap Protected Component using Require Auth Component
+
+ 12 -
 
 
 */

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 import googleImg from '../../images/google.png'
 import auth from '../../firebase.init';
@@ -18,7 +18,9 @@ const Login = () => {
         erroMsg
     ] = useSignInWithEmailAndPassword(auth);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
 
     const handleEmailBlur = event => {
@@ -29,7 +31,7 @@ const Login = () => {
     }
 
     if (user) {
-        navigate('/');
+        navigate(from, { replace: true });
     }
 
     const handleUserSignIn = event => {

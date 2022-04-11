@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import useCart from '../Hook/useCart';
@@ -13,6 +13,9 @@ const Order = () => {
 
     const [products, setProducts] = useProducts();
     const [cart, setCart] = useCart(products);
+
+    const navigate = useNavigate();
+
 
     // Remove Button Event Handler 
     const handleRemoveProduct = (selectedProduct) => {
@@ -44,9 +47,7 @@ const Order = () => {
             <div className="cart-container">
 
                 <Cart cart={cart}>
-                    <Link to={'/inventory'}>
-                        < button className='review-btn'> Procced Checkout</button>
-                    </Link>
+                    <button onClick={() => navigate('/shipment')} className='review-btn'>Proceed Shipping </button>
                 </Cart>
             </div>
 
