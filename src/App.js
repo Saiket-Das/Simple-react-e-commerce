@@ -18,8 +18,8 @@ function App() {
 
       {/* Router  */}
       <Routes>
-        <Route path="/" element={<Shop></Shop>} />
-        <Route path="/shop" element={<Shop></Shop>} />
+        <Route path="/" element={<Shop></Shop>} title="Home" />
+        <Route path="/shop" element={<Shop></Shop>} title="Shop" />
         <Route path="/order" element={<Order></Order>} />
 
         <Route path="/inventory" element={

@@ -32,12 +32,14 @@
 
 // * * * Hositing * * * 
 /* 
-1 -  npm install -g firebase-tools
+1 -  npm install -g firebase-tools (One time for Computer)
 
-2 - firebase login
+2 - firebase login (One time for Computer)
 
-3 - firebase init 
+3 - firebase init  (One time for each Project )
 
-4 - firebase deploy 
+4 - npm run build (Build your project) (Everytime you want to deploy)
+
+5 - firebase deploy 
 
 */

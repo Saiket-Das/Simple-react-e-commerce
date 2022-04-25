@@ -4,6 +4,7 @@ import './Login.css'
 import googleImg from '../../images/google.png'
 import auth from '../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import PageTitle from '../Page Title/PageTitle';
 
 const Login = () => {
 
@@ -41,6 +42,9 @@ const Login = () => {
 
     return (
         <div className='form-container'>
+            {/* Page TItle  */}
+            <PageTitle title='Login'></PageTitle>
+
             <div>
                 <h2 className='form-title'>LOGIN</h2>
 

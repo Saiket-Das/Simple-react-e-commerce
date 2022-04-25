@@ -5,6 +5,7 @@ const Cart = (props) => {
 
     const { cart } = props;
     // console.log(cart)
+    console.log(cart)
 
 
     //  Calculation 

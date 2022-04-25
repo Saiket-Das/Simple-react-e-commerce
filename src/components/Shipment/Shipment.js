@@ -37,7 +37,8 @@ const Shipment = () => {
     return (
         <div className='signup-container'>
             <div>
-                <h2 className='form-title'>SIGN UP</h2>
+
+                <h2 className='form-title'>SHIPPING DETAILS</h2>
 
                 {/* INPUT FIELD  */}
                 <form action="" onSubmit={handleCreateUser}>

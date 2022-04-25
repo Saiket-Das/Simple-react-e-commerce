@@ -4,6 +4,7 @@ import './SignUp.css'
 import googleImg from '../../images/google.png'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
+import PageTitle from '../Page Title/PageTitle';
 
 
 
@@ -57,6 +58,10 @@ const SignUp = () => {
 
     return (
         <div className='signup-container'>
+
+            {/* Page TItle  */}
+            <PageTitle title='Sign up'></PageTitle>
+
             <div>
                 <h2 className='form-title'>SIGN UP</h2>
 
